@@ -92,12 +92,12 @@ class MyRunnable(Runnable):
 #             dataset = builder.create(overwrite=True)
             
             #setup format & schema  settings
-#             ds_settings = dataset.get_settings()
+            ds_settings = dataset.get_settings()
 #             ds_settings.set_format("csv")
-#             ds_settings.set_csv_format()
-#             ds_settings.add_raw_schema_column({'name':'id', 'type':'string'})
-#             ds_settings.add_raw_schema_column({'name':'value', 'type':'float'})
-#             ds_settings.save()
+            ds_settings.set_csv_format()
+            ds_settings.add_raw_schema_column({'name':'id', 'type':'string'})
+            ds_settings.add_raw_schema_column({'name':'value', 'type':'float'})
+            ds_settings.save()
 
             df = pd.DataFrame({
                 'id': [uuid.uuid4() for _ in range(10)],
@@ -111,12 +111,7 @@ class MyRunnable(Runnable):
             percent = 100 * float(i+1) / num_files
             update_time = update_percent(percent, update_time)
             
-            # We run autodetection
-            settings = dataset.autodetect_settings()
-            # settings is now an object containing the "suggested" new dataset settings, including the detected format
-            # andcompleted schema
-            # We can just save the new settings in order to "accept the suggestion"
-            settings.save()
+            
             
             time.sleep(1)
 
