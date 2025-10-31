@@ -26,6 +26,9 @@ class MyRunnable(Runnable):
         self.num_files = self.config.get("num_files", "defaultValue")
         self.seed = self.config.get("seed", "defaultValue")
         
+        print(self.num_files)
+        print(self.seed)
+        
     def get_progress_target(self):
         """
         If the runnable will return some progress info, have this function return a tuple of 
