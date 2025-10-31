@@ -104,7 +104,7 @@ class MyRunnable(Runnable):
             })
 
             with dataset.get_as_core_dataset().get_writer() as writer:
-                for idx, row in iterrows(df):
+                for idx, row in df.iterrows():
                     writer.write_row_array(row)
 
             percent = 100 * float(i+1) / num_files
