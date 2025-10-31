@@ -111,6 +111,13 @@ class MyRunnable(Runnable):
             percent = 100 * float(i+1) / num_files
             update_time = update_percent(percent, update_time)
             
+            # We run autodetection
+            settings = dataset.autodetect_settings()
+            # settings is now an object containing the "suggested" new dataset settings, including the detected format
+            # andcompleted schema
+            # We can just save the new settings in order to "accept the suggestion"
+            settings.save()
+            
             time.sleep(1)
 
         macro_creates_dataset = True
