@@ -1,5 +1,5 @@
 # This file is the actual code for the Python runnable create-dynamic-datasets
-from dataiku.runnables import Runnable
+from dataiku.runnables import Runnable, ResultTable
 
 # User import
 import dataiku
@@ -25,7 +25,7 @@ class MyRunnable(Runnable):
         If the runnable will return some progress info, have this function return a tuple of 
         (target, unit) where unit is one of: SIZE, FILES, RECORDS, NONE
         """
-        return None
+        return (2, "FILES")
 
     def run(self, progress_callback):
         """
@@ -35,4 +35,7 @@ class MyRunnable(Runnable):
         
         # Get project instance here
         client = dataiku.api_client()
+        project = client.get_project(self.project_key)
+
+
         
