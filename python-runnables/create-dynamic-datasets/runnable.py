@@ -103,8 +103,9 @@ class MyRunnable(Runnable):
                 'value': [random.random() for _ in range(10)]
             })
 
-            with dataset.get_as_core_dataset().get_writer() as writer:
-                writer.write_dataframe(df)
+            with ds.get_as_core_dataset().get_writer() as writer:
+                for idx, row in iterrows(df):
+                    writer.write_row_array(row)
 
             percent = 100 * float(i+1) / num_files
             update_time = update_percent(percent, update_time)
