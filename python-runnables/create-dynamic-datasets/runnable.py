@@ -21,6 +21,7 @@ class MyRunnable(Runnable):
         self.config = config
         self.plugin_config = plugin_config
 
+        # Obtain configuration variables
         self.num_files = self.config.get("num_files", "defaultValue")
         self.seed = self.config.get("seed", "defaultValue")
         
