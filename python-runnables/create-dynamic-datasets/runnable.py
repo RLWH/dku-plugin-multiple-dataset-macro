@@ -1,6 +1,12 @@
 # This file is the actual code for the Python runnable create-dynamic-datasets
 from dataiku.runnables import Runnable
 
+# User import
+import dataiku
+import uuid
+import random
+import pandas as pd
+
 class MyRunnable(Runnable):
     """The base interface for a Python runnable"""
 
@@ -26,5 +32,7 @@ class MyRunnable(Runnable):
         Do stuff here. Can return a string or raise an exception.
         The progress_callback is a function expecting 1 value: current progress
         """
-        raise Exception("unimplemented")
+        
+        # Get project instance here
+        client = dataiku.api_client()
         
