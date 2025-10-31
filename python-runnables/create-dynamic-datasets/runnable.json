@@ -30,17 +30,19 @@
     */
     "params": [
         {
-            "name": "parameter1",
-            "label": "User-readable name",
-            "type": "STRING",
-            "description": "Some documentation for parameter1",
+            "name": "num_datasets",
+            "label": "Number of datasets to be created",
+            "type": "INT",
+            "description": "You can create more than one datasets. Default is 1. ",
+            "defaultValue": 1,
             "mandatory": true
         },
         {
-            "name": "parameter2",
-            "label": "parameter2",
+            "name": "seed",
+            "label": "Seed",
             "type": "INT",
-            "defaultValue": 42
+            "defaultValue": 42,
+            "description": "This is the seed for random data generator. Default is 42. "
             /* Note that standard json parsing will return it as a double in Python (instead of an int), so you need to write
                int(self.config()['parameter2'])
             */
