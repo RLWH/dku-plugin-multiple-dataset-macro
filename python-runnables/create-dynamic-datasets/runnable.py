@@ -121,11 +121,6 @@ class MyRunnable(Runnable):
             # We can just save the new settings in order to "accept the suggestion"
             settings.save()
 
-
-            with dataset.get_as_core_dataset().get_writer() as writer:
-                for idx, row in df.iterrows():
-                    writer.write_row_array(row)
-
             percent = 100 * float(i+1) / num_files
             update_time = update_percent(percent, update_time)
             
