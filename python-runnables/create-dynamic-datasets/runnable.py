@@ -84,7 +84,7 @@ class MyRunnable(Runnable):
             actions_performed[dataset_name] = "created"
 
             # Core logic here
-            builder = project.new_managed_dataset("py_generated")
+            builder = project.new_managed_dataset(dataset_name)
             builder.with_store_into("filesystem_folders")
             dataset = builder.create(overwrite=True)
 
