@@ -31,7 +31,7 @@ class MyRunnable(Runnable):
         If the runnable will return some progress info, have this function return a tuple of 
         (target, unit) where unit is one of: SIZE, FILES, RECORDS, NONE
         """
-        return (2, "FILES")
+        return (self.num_files, "FILES")
 
     def run(self, progress_callback):
         """
