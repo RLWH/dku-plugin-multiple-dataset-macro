@@ -65,8 +65,8 @@ class MyRunnable(Runnable):
 
         # Actions performed - State dictionary
         actions_performed = dict()
-        num_files = self.num_files
-        seed = self.seed
+        num_files = int(self.num_files)
+        seed = int(self.seed)
 
         random.seed(seed)
 
