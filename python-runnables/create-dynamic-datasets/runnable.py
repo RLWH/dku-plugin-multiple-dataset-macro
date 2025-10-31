@@ -68,7 +68,7 @@ class MyRunnable(Runnable):
         num_files = int(self.num_files)
         seed = int(self.seed)
         
-        print(num_files)
+        print("Number of files: ", num_files)
         print(seed)
 
         random.seed(seed)
