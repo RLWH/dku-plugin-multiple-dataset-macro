@@ -89,6 +89,11 @@ class MyRunnable(Runnable):
                 'value': [random.random() for _ in range(10)]
             })
 
+            dataset.set_schema({'columns': [{'name': column, 'type': 'string'} for column, column_type in df.dtypes.items()]})
+
+            with dataset.get_writer() as writer:
+                writer.write_dataframe(dataset)
+
 
 
         
