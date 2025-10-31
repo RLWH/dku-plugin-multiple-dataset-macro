@@ -103,7 +103,7 @@ class MyRunnable(Runnable):
             with dataset.get_as_core_dataset().get_writer() as writer:
                 writer.write_dataframe(df)
 
-            percent = 100 * float(i+1)/num_files
+            percent = 100 * float(i+1) / num_files
             update_time = update_percent(percent, update_time)
 
         macro_creates_dataset = True
