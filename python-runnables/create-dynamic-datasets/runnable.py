@@ -20,6 +20,9 @@ class MyRunnable(Runnable):
         self.project_key = project_key
         self.config = config
         self.plugin_config = plugin_config
+
+        self.num_files = self.config.get("num_files", "defaultValue")
+        self.seed = self.config.get("seed", "defaultValue")
         
     def get_progress_target(self):
         """
@@ -57,5 +60,9 @@ class MyRunnable(Runnable):
         datasets_in_project = []
         for dataset in project.list_datasets():
             datasets_in_project.append(dataset.get('name'))
+
+        # Actions performed - State dictionary
+        actions_performed = dict()
+        num_files = 
 
         
