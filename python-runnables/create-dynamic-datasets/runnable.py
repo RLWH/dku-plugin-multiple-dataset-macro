@@ -87,11 +87,12 @@ class MyRunnable(Runnable):
 
             # Core logic here
             builder = project.new_managed_dataset(dataset_name)
-            builder.with_store_into("filesystem_folders")
+            builder.with_store_into("dataiku-managed-folders")
             dataset = builder.create(overwrite=True)
             
             #setup format & schema  settings
             ds_settings = dataset.get_settings()
+            ds_settings.set_format("csv")
             ds_settings.set_csv_format()
             ds_settings.add_raw_schema_column({'name':'id', 'type':'string'})
             ds_settings.add_raw_schema_column({'name':'value', 'type':'float'})
