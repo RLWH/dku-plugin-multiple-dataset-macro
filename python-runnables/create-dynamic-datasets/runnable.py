@@ -97,6 +97,8 @@ class MyRunnable(Runnable):
             percent = 100 * float(i+1)/num_files
             update_time = update_percent(percent, update_time)
 
+        macro_creates_dataset = True
+
         # Output table
         rt = ResultTable()
         rt.add_column("actions", "Actions", "STRING")
