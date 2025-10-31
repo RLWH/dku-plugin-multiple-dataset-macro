@@ -96,7 +96,7 @@ class MyRunnable(Runnable):
             dataset.set_schema({'columns': [{'name': column, 'type': 'string'} for column, column_type in df.dtypes.items()]})
 
             with dataset.get_as_core_dataset().get_writer() as writer:
-                writer.write_dataframe(dataset)
+                writer.write_dataframe(df)
 
             percent = 100 * float(i+1)/num_files
             update_time = update_percent(percent, update_time)
