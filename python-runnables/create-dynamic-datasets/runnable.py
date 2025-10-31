@@ -103,7 +103,7 @@ class MyRunnable(Runnable):
                 'value': [random.random() for _ in range(10)]
             })
 
-            with ds.get_as_core_dataset().get_writer() as writer:
+            with dataset.get_as_core_dataset().get_writer() as writer:
                 for idx, row in iterrows(df):
                     writer.write_row_array(row)
 
