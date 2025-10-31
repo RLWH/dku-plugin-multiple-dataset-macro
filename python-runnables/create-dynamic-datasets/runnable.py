@@ -3,6 +3,7 @@ from dataiku.runnables import Runnable, ResultTable
 
 # User import
 import time
+import datetime
 import dataiku
 import uuid
 import random
@@ -64,6 +65,14 @@ class MyRunnable(Runnable):
 
         # Actions performed - State dictionary
         actions_performed = dict()
-        num_files = 
+        num_files = self.num_files
+        seed = self.seed
+
+        update_time = time.time()
+
+        for i in range(num_files):
+            
+            # Dataset name
+            dataset_name = f"dataset-{datetime.now().strftime("%Y%m%d-%H%M%S")}"
 
         
