@@ -84,9 +84,9 @@ class MyRunnable(Runnable):
             actions_performed[dataset_name] = "created"
 
             # Core logic here
-            dataset = project.create_fslike_dataset(dataset_name, dataset_type="Filesystem", connection="filesystem_folders", path_in_connection="/")
-#             builder.with_store_into("filesystem_folders")
-#             dataset = builder.create(overwrite=True)
+            builder = project.new_managed_dataset("py_generated")
+            builder.with_store_into("filesystem_folders")
+            dataset = builder.create(overwrite=True)
 
             df = pd.DataFrame({
                 'id': [uuid.uuid4() for _ in range(10)],
@@ -96,7 +96,7 @@ class MyRunnable(Runnable):
             dataset.set_schema({'columns': [{'name': column, 'type': 'string'} for column, column_type in df.dtypes.items()]})
 
             with dataset.get_as_core_dataset().get_writer() as writer:
-                writer.write_dataframe(df)
+                writer.write_dataframe(dataset)
 
             percent = 100 * float(i+1)/num_files
             update_time = update_percent(percent, update_time)
