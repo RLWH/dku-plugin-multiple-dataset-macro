@@ -12,7 +12,9 @@
     },
 
     /* whether the runnable's code is untrusted */
-    "impersonate": false,
+    // Generally speaking, we recommend that your macros run with "impersonate" : true. 
+    // This means that they may not access the filesystem outside of their working directory and should only use DSS APIs for their operations.
+    "impersonate": true,
 
 
     /* params:
