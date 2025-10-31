@@ -77,6 +77,8 @@ class MyRunnable(Runnable):
 
         for i in range(num_files):
             
+            print(i)
+            
             # Dataset name
             timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
             dataset_name = f"dataset-{timestamp}"
