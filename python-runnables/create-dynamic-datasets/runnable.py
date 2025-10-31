@@ -95,7 +95,7 @@ class MyRunnable(Runnable):
 
             dataset.set_schema({'columns': [{'name': column, 'type': 'string'} for column, column_type in df.dtypes.items()]})
 
-            with dataset.get_writer() as writer:
+            with dataset.get_as_core_dataset().get_writer() as writer:
                 writer.write_dataframe(dataset)
 
             percent = 100 * float(i+1)/num_files
