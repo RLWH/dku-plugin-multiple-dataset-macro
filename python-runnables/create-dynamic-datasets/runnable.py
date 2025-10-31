@@ -86,23 +86,41 @@ class MyRunnable(Runnable):
             actions_performed[dataset_name] = "created"
 
             # Core logic here
-#             dataset = project.create_s3_dataset(dataset_name, "dataiku-managed-storage", "dynamic_dataset")
-            builder = project.new_managed_dataset(dataset_name)
-            builder.with_store_into("dataiku-managed-storage", format_option_id="S3")
-            dataset = builder.create(overwrite=True)
+# #             dataset = project.create_s3_dataset(dataset_name, "dataiku-managed-storage", "dynamic_dataset")
+#             builder = project.new_managed_dataset(dataset_name)
+#             builder.with_store_into("dataiku-managed-storage", format_option_id="S3")
+#             dataset = builder.create(overwrite=True)
             
-            #setup format & schema  settings
-            ds_settings = dataset.get_settings()
-#             ds_settings.set_format("csv")
-            ds_settings.set_csv_format()
-            ds_settings.add_raw_schema_column({'name':'id', 'type':'string'})
-            ds_settings.add_raw_schema_column({'name':'value', 'type':'float'})
-            ds_settings.save()
-
+#             #setup format & schema  settings
+#             ds_settings = dataset.get_settings()
+# #             ds_settings.set_format("csv")
+#             ds_settings.set_csv_format()
+#             ds_settings.add_raw_schema_column({'name':'id', 'type':'string'})
+#             ds_settings.add_raw_schema_column({'name':'value', 'type':'float'})
+#             ds_settings.save()
+            dataset = project.create_upload_dataset(dataset_name) # you can add connection= for the target connection
+    
+    
             df = pd.DataFrame({
                 'id': [uuid.uuid4() for _ in range(10)],
                 'value': [random.random() for _ in range(10)]
             })
+        
+            df.to_csv(f"{dataset_name}.csv", index=False)
+
+            with open(f"{dataset_name}.csv", "rb") as f:
+                    dataset.uploaded_add_file(f, f"{dataset_name}.csv")
+
+            # At this point, the dataset object has been initialized, but the format is still unknown, and the
+            # schema is empty, so the dataset is not yet usable
+
+            # We run autodetection
+            settings = dataset.autodetect_settings()
+            # settings is now an object containing the "suggested" new dataset settings, including the detected format
+            # andcompleted schema
+            # We can just save the new settings in order to "accept the suggestion"
+            settings.save()
+
 
             with dataset.get_as_core_dataset().get_writer() as writer:
                 for idx, row in df.iterrows():
