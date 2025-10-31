@@ -87,7 +87,7 @@ class MyRunnable(Runnable):
 
             # Core logic here
             builder = project.new_managed_dataset(dataset_name)
-            builder.with_store_into("dataiku-managed-folders")
+            builder.with_store_into("filesystem_managed")
             dataset = builder.create(overwrite=True)
             
             #setup format & schema  settings
