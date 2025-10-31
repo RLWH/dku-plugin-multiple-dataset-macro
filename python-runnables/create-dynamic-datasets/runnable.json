@@ -12,6 +12,8 @@
     },
 
     /* whether the runnable's code is untrusted */
+    // You need to configure whether this macro will run with UNIX identity of the user running DSS, or with the identity of the final user.
+    // Note that this is only relevant for the users of your plugin if User Isolation Framework is enabled, but since your plugin might be used in both cases, you still need to take care of this.
     // Generally speaking, we recommend that your macros run with "impersonate" : true. 
     // This means that they may not access the filesystem outside of their working directory and should only use DSS APIs for their operations.
     "impersonate": true,
