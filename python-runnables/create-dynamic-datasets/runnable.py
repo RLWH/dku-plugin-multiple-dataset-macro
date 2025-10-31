@@ -2,6 +2,7 @@
 from dataiku.runnables import Runnable, ResultTable
 
 # User import
+import time
 import dataiku
 import uuid
 import random
@@ -37,5 +38,24 @@ class MyRunnable(Runnable):
         client = dataiku.api_client()
         project = client.get_project(self.project_key)
 
+        def update_percent(percent, last_update_time):
+            """
+            Update progress bar
+            """
+
+            new_time = time.time()
+            if (new_time - last_update_time) > 3:
+                progress_callback(percent)
+                return new_time
+            else:
+                return last_update_time
+
+        # A boolean used to provide an informative message to the user when the macro creates a dataset
+        macro_creates_dataset = False
+
+        # List the datasets in the project
+        datasets_in_project = []
+        for dataset in project.list_datasets():
+            datasets_in_project.append(dataset.get('name'))
 
         
