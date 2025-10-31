@@ -26,9 +26,6 @@ class MyRunnable(Runnable):
         self.num_files = self.config.get("num_datasets", "defaultValue")
         self.seed = self.config.get("seed", "defaultValue")
         
-        print(self.num_files)
-        print(self.seed)
-        
     def get_progress_target(self):
         """
         If the runnable will return some progress info, have this function return a tuple of 
@@ -70,6 +67,9 @@ class MyRunnable(Runnable):
         actions_performed = dict()
         num_files = int(self.num_files)
         seed = int(self.seed)
+        
+        print(num_files)
+        print(seed)
 
         random.seed(seed)
 
@@ -85,7 +85,7 @@ class MyRunnable(Runnable):
 
             # Core logic here
             builder = project.new_managed_dataset(dataset_name)
-            builder.with_store_into("filesystem_folders")
+#             builder.with_store_into("filesystem_folders")
             dataset = builder.create(overwrite=True)
 
             df = pd.DataFrame({
