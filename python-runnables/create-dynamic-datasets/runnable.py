@@ -91,16 +91,14 @@ class MyRunnable(Runnable):
             #setup format & schema  settings
             ds_settings = dataset.get_settings()
             ds_settings.set_csv_format()
-            ds_settings.add_raw_schema_column({'name':'id', 'type':'int'})
-            ds_settings.add_raw_schema_column({'name':'name', 'type':'string'})
+            ds_settings.add_raw_schema_column({'name':'id', 'type':'str'})
+            ds_settings.add_raw_schema_column({'name':'value', 'type':'float'})
             ds_settings.save()
 
             df = pd.DataFrame({
                 'id': [uuid.uuid4() for _ in range(10)],
                 'value': [random.random() for _ in range(10)]
             })
-
-            dataset.set_schema({'columns': [{'name': column, 'type': 'string'} for column, column_type in df.dtypes.items()]})
 
             with dataset.get_as_core_dataset().get_writer() as writer:
                 writer.write_dataframe(df)
