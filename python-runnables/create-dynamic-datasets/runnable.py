@@ -92,12 +92,12 @@ class MyRunnable(Runnable):
 #             dataset = builder.create(overwrite=True)
             
             #setup format & schema  settings
-            ds_settings = dataset.get_settings()
-            ds_settings.set_format("csv")
-            ds_settings.set_csv_format()
-            ds_settings.add_raw_schema_column({'name':'id', 'type':'string'})
-            ds_settings.add_raw_schema_column({'name':'value', 'type':'float'})
-            ds_settings.save()
+#             ds_settings = dataset.get_settings()
+#             ds_settings.set_format("csv")
+#             ds_settings.set_csv_format()
+#             ds_settings.add_raw_schema_column({'name':'id', 'type':'string'})
+#             ds_settings.add_raw_schema_column({'name':'value', 'type':'float'})
+#             ds_settings.save()
 
             df = pd.DataFrame({
                 'id': [uuid.uuid4() for _ in range(10)],
