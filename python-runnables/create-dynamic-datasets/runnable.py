@@ -121,7 +121,7 @@ class MyRunnable(Runnable):
             # We can just save the new settings in order to "accept the suggestion"
             settings.save()
 
-            percent = 100 * float(i+1) / num_files
+            percent = i
             update_time = update_percent(percent, update_time)
             
             
