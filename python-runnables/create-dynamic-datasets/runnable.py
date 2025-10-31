@@ -68,11 +68,27 @@ class MyRunnable(Runnable):
         num_files = self.num_files
         seed = self.seed
 
+        random.seed(seed)
+
         update_time = time.time()
 
         for i in range(num_files):
             
             # Dataset name
             dataset_name = f"dataset-{datetime.now().strftime("%Y%m%d-%H%M%S")}"
+
+            actions_performed[dataset_name] = "created"
+
+            # Core logic here
+            builder = project.new_managed_dataset("py_generated")
+            builder.with_store_into("filesystem_folders")
+            dataset = builder.create(overwrite=True)
+
+            df = pd.DataFrame({
+                'id': [uuid.uuid4() for _ in range(10)],
+                'value': [random.random() for _ in range(10)]
+            })
+
+
 
         
