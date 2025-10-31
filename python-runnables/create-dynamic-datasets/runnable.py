@@ -94,6 +94,23 @@ class MyRunnable(Runnable):
             with dataset.get_writer() as writer:
                 writer.write_dataframe(dataset)
 
+            percent = 100 * float(i+1)/num_files
+            update_time = update_percent(percent, update_time)
+
+        # Output table
+        rt = ResultTable()
+        rt.add_column("actions", "Actions", "STRING")
+
+        # Actions : "dataset" has been created or replaced
+        for i in range(len(actions_performed)):
+            record = []
+            record.append(list(actions_performed.keys())[i] + " has been " + list(actions_performed.values())[i])
+            rt.add_record(record)
+
+        if macro_creates_dataset:
+            rt.add_record(["Please refresh this page to see new datasets."])
+
+        return rt
 
 
         
