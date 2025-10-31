@@ -78,7 +78,7 @@ class MyRunnable(Runnable):
         for i in range(num_files):
             
             # Dataset name
-            timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+            timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
             dataset_name = f"dataset-{timestamp}"
 
             actions_performed[dataset_name] = "created"
