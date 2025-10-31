@@ -84,7 +84,7 @@ class MyRunnable(Runnable):
             actions_performed[dataset_name] = "created"
 
             # Core logic here
-            dataset = project.create_fslike_dataset(dataset_name, dataset_type="Filesystem", connection="filesystem_folders")
+            dataset = project.create_fslike_dataset(dataset_name, dataset_type="Filesystem", connection="filesystem_folders", path_in_connection="/")
 #             builder.with_store_into("filesystem_folders")
 #             dataset = builder.create(overwrite=True)
 
