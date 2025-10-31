@@ -77,8 +77,6 @@ class MyRunnable(Runnable):
 
         for i in range(num_files):
             
-            print(i)
-            
             # Dataset name
             timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
             dataset_name = f"dataset-{timestamp}"
@@ -87,7 +85,7 @@ class MyRunnable(Runnable):
 
             # Core logic here
             builder = project.new_managed_dataset(dataset_name)
-#             builder.with_store_into("filesystem_folders")
+            builder.with_store_into("filesystem_folders")
             dataset = builder.create(overwrite=True)
 
             df = pd.DataFrame({
