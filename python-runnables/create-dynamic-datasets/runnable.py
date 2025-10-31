@@ -87,6 +87,13 @@ class MyRunnable(Runnable):
             builder = project.new_managed_dataset(dataset_name)
             builder.with_store_into("filesystem_folders")
             dataset = builder.create(overwrite=True)
+            
+            #setup format & schema  settings
+            ds_settings = dataset.get_settings()
+            ds_settings.set_csv_format()
+            ds_settings.add_raw_schema_column({'name':'id', 'type':'int'})
+            ds_settings.add_raw_schema_column({'name':'name', 'type':'string'})
+            ds_settings.save()
 
             df = pd.DataFrame({
                 'id': [uuid.uuid4() for _ in range(10)],
