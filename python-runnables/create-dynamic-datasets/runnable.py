@@ -86,7 +86,7 @@ class MyRunnable(Runnable):
             actions_performed[dataset_name] = "created"
 
             # Core logic here
-            dataset = create_s3_dataset(dataset_name, "dataiku-managed-storage", "dynamic_dataset")
+            dataset = project.create_s3_dataset(dataset_name, "dataiku-managed-storage", "dynamic_dataset")
 #             builder = project.new_managed_dataset(dataset_name)
 #             builder.with_store_into("filesystem_managed")
 #             dataset = builder.create(overwrite=True)
