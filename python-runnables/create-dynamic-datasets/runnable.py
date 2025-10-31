@@ -107,6 +107,8 @@ class MyRunnable(Runnable):
 
             percent = 100 * float(i+1) / num_files
             update_time = update_percent(percent, update_time)
+            
+            time.sleep(1)
 
         macro_creates_dataset = True
 
