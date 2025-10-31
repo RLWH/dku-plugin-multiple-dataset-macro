@@ -84,9 +84,9 @@ class MyRunnable(Runnable):
             actions_performed[dataset_name] = "created"
 
             # Core logic here
-            builder = project.new_managed_dataset("py_generated")
-            builder.with_store_into("filesystem_folders")
-            dataset = builder.create(overwrite=True)
+            dataset = project.create_fslike_dataset(dataset_name)
+#             builder.with_store_into("filesystem_folders")
+#             dataset = builder.create(overwrite=True)
 
             df = pd.DataFrame({
                 'id': [uuid.uuid4() for _ in range(10)],
