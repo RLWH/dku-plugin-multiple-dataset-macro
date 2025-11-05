@@ -98,7 +98,7 @@ class MyRunnable(Runnable):
 #             ds_settings.add_raw_schema_column({'name':'id', 'type':'string'})
 #             ds_settings.add_raw_schema_column({'name':'value', 'type':'float'})
 #             ds_settings.save()
-            dataset = project.create_upload_dataset(dataset_name) # you can add connection= for the target connection
+            dataset = project.create_upload_dataset(dataset_name, connection="filesystem_managed") # you can add connection= for the target connection
     
     
             df = pd.DataFrame({
